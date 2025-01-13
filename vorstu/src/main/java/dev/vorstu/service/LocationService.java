@@ -1,5 +1,6 @@
 package dev.vorstu.service;
 
+import dev.vorstu.dto.BusinessPerson;
 import dev.vorstu.dto.Location;
 import dev.vorstu.dto.mapper.LocationMapper;
 import dev.vorstu.entity.credential.CredentialEntity;
@@ -39,12 +40,18 @@ public class LocationService {
         );
     }
 
+    public List<Location> getLocations() {
+        return locationMapper.toList(
+                locationRepository.findAll()
+        );
+    }
+
     public Long delete(Long id) {
         locationRepository.deleteById(id);
         return id;
     }
 
-    public List<Location> findAll() {
+    public List<Location> findLocations() {
         return locationMapper.toList(
                 locationRepository.findAll());
     }

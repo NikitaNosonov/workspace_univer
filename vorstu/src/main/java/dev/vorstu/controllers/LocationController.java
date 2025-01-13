@@ -1,5 +1,6 @@
 package dev.vorstu.controllers;
 
+import dev.vorstu.dto.BusinessPerson;
 import dev.vorstu.dto.Location;
 import dev.vorstu.entity.LocationEntity;
 import dev.vorstu.repositories.LocationRepository;
@@ -26,5 +27,10 @@ public class LocationController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Location createLocation(@RequestBody Location newLocation) {
         return locationService.create(newLocation);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Location> getBusinessPerson() {
+        return locationService.getLocations();
     }
 }

@@ -80,7 +80,7 @@ public class InitializerService {
         Location locationId = locationService.create(Location.builder()
                 .nameLocation("Отель Алекс")
                 .description("Отель Алексеева Алексея")
-                .businessPersonId(businessPersonId1.getId()) // Убедитесь, что здесь используется правильный ID
+                .businessPersonId(businessPersonId1.getId())
                 .latitude(51.662356)
                 .longitude(39.198158)
                 .build());
@@ -88,7 +88,7 @@ public class InitializerService {
         Location locationId1 = locationService.create(Location.builder()
                 .nameLocation("Отель")
                 .description("Отель Алексеева")
-                .businessPersonId(businessPersonId1.getId()) // Убедитесь, что здесь используется правильный ID
+                .businessPersonId(businessPersonId1.getId())
                 .latitude(51.662756)
                 .longitude(39.198858)
                 .build());

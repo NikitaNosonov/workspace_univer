@@ -10,7 +10,8 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper(componentModel = "spring",
-        uses = {PhotoMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+        uses = {PhotoMapper.class,
+                BusinessPersonMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface LocationMapper {
     LocationEntity dtoToEntity(Location dto);
 
