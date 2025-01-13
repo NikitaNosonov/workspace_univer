@@ -1,11 +1,11 @@
 package dev.vorstu;
 
+import dev.vorstu.dto.BusinessPerson;
+import dev.vorstu.dto.Location;
 import dev.vorstu.dto.User;
 import dev.vorstu.dto.credential.Credential;
 import dev.vorstu.dto.credential.Role;
-import dev.vorstu.service.BusinessPersonService;
-import dev.vorstu.service.CredentialService;
-import dev.vorstu.service.UserService;
+import dev.vorstu.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -23,6 +23,18 @@ public class InitializerService {
     @Lazy
     @Autowired
     private final BusinessPersonService businessPersonService;
+    @Lazy
+    @Autowired
+    private final LocationService locationService;
+    @Lazy
+    @Autowired
+    private final PowerBankService powerBankService;
+    @Lazy
+    @Autowired
+    private final PhotoService photoService;
+    @Lazy
+    @Autowired
+    private final RentalService rentalService;
 
     public void initial() {
         Credential credential = credentialService.create(Credential.builder()
@@ -48,6 +60,7 @@ public class InitializerService {
                 .email("i1@mail.ru")
                 .phoneNumber("11122233377")
                 .credentialId(credential.getId())
+
                 .build());
 
         User userId1 = userService.create(User.builder()
@@ -55,6 +68,29 @@ public class InitializerService {
                 .email("i1@mail.ru")
                 .phoneNumber("11122233377")
                 .credentialId(credential2.getId())
+                .build());
+
+        BusinessPerson businessPersonId1 = businessPersonService.create(BusinessPerson.builder()
+                .nameBusiness("ИП ААА")
+                .applicationId(Long.valueOf(21213))
+                .userId(userId.getId())
+                .approvedApplication(false)
+                .build());
+
+        Location locationId = locationService.create(Location.builder()
+                .nameLocation("Отель Алекс")
+                .description("Отель Алексеева Алексея")
+                .businessPersonId(businessPersonId1.getId()) // Убедитесь, что здесь используется правильный ID
+                .latitude(51.662356)
+                .longitude(39.198158)
+                .build());
+
+        Location locationId1 = locationService.create(Location.builder()
+                .nameLocation("Отель")
+                .description("Отель Алексеева")
+                .businessPersonId(businessPersonId1.getId()) // Убедитесь, что здесь используется правильный ID
+                .latitude(51.662756)
+                .longitude(39.198858)
                 .build());
     }
 }

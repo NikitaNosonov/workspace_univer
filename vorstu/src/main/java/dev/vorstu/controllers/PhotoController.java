@@ -26,15 +26,15 @@ public class PhotoController {
         return photoService.create(newPhoto);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Photo changePhoto(@RequestBody Photo changingPhoto) {
-        return photoService.update(changingPhoto);
-    }
-
-    @DeleteMapping(value="photos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Long deletePhoto(@PathVariable("id") Long id) {
-        return photoService.delete(id);
-    }
+//    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Photo changePhoto(@RequestBody Photo changingPhoto) {
+//        return photoService.update(changingPhoto);
+//    }
+//
+//    @DeleteMapping(value="photos/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Long deletePhoto(@PathVariable("id") Long id) {
+//        return photoService.delete(id);
+//    }
 
     @GetMapping(value = "photos", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PhotoEntity> getAllPhotos() {

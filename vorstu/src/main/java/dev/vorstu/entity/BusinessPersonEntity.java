@@ -30,7 +30,8 @@ public class BusinessPersonEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @OneToMany(mappedBy = "businessPerson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="owner_id")
     private List<LocationEntity> locations;
 
 

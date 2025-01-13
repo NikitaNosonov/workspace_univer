@@ -26,15 +26,15 @@ public class PowerBankController {
         return powerBankService.create(newPowerBank);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public PowerBank changePowerBank(@RequestBody PowerBank changingPowerBank) {
-        return powerBankService.update(changingPowerBank);
-    }
-
-    @DeleteMapping(value="powerBanks/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Long deletePowerBank(@PathVariable("id") Long id) {
-        return powerBankService.delete(id);
-    }
+//    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public PowerBank changePowerBank(@RequestBody PowerBank changingPowerBank) {
+//        return powerBankService.update(changingPowerBank);
+//    }
+//
+//    @DeleteMapping(value="powerBanks/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Long deletePowerBank(@PathVariable("id") Long id) {
+//        return powerBankService.delete(id);
+//    }
 
     @GetMapping(value = "powerBanks", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PowerBankEntity> getAllPowerBanks() {

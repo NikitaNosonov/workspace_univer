@@ -47,7 +47,7 @@ public class Config implements WebMvcConfigurer {
                 }))
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/login").permitAll()
-                        .requestMatchers("/api/user").hasRole("USER")
+                        .requestMatchers("/api/user").hasRole("ADMIN")
                         .requestMatchers("/api/user/users").hasRole("USER")
                         .requestMatchers("/api/photo").hasRole("USER")
                         .requestMatchers("/api/businessPerson").hasRole("USER")

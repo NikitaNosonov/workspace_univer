@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-13T06:12:37+0300",
+    date = "2025-01-13T15:21:36+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -44,6 +44,7 @@ public class LocationMapperImpl implements LocationMapper {
         locationEntity.setOwnerPowerBanks( powerBankListToPowerBankEntityList( dto.getOwnerPowerBanks() ) );
         locationEntity.setPowerBanks( powerBankListToPowerBankEntityList( dto.getPowerBanks() ) );
         locationEntity.setPhotos( photoMapper.toListEntity( dto.getPhotos() ) );
+        locationEntity.setBusinessPersonId( dto.getBusinessPersonId() );
 
         return locationEntity;
     }
@@ -62,6 +63,7 @@ public class LocationMapperImpl implements LocationMapper {
         location.powerBanks( powerBankEntityListToPowerBankList( entity.getPowerBanks() ) );
         location.ownerPowerBanks( powerBankEntityListToPowerBankList( entity.getOwnerPowerBanks() ) );
         location.photos( photoMapper.toList( entity.getPhotos() ) );
+        location.businessPersonId( entity.getBusinessPersonId() );
         location.latitude( entity.getLatitude() );
         location.longitude( entity.getLongitude() );
 
@@ -77,6 +79,20 @@ public class LocationMapperImpl implements LocationMapper {
         List<Location> list1 = new ArrayList<Location>( list.size() );
         for ( LocationEntity locationEntity : list ) {
             list1.add( entityToDto( locationEntity ) );
+        }
+
+        return list1;
+    }
+
+    @Override
+    public List<LocationEntity> toListEntity(List<Location> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<LocationEntity> list1 = new ArrayList<LocationEntity>( list.size() );
+        for ( Location location : list ) {
+            list1.add( dtoToEntity( location ) );
         }
 
         return list1;

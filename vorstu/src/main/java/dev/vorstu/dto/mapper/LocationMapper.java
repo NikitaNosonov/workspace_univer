@@ -1,7 +1,9 @@
 package dev.vorstu.dto.mapper;
 
 import dev.vorstu.dto.Location;
+import dev.vorstu.dto.Photo;
 import dev.vorstu.entity.LocationEntity;
+import dev.vorstu.entity.PhotoEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
@@ -16,4 +18,5 @@ public interface LocationMapper {
 
     List<Location> toList(List<LocationEntity> list);
 
+    List<LocationEntity> toListEntity(List<Location> list);
 }

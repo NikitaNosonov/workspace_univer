@@ -32,7 +32,10 @@ public class LocationEntity {
     @OneToMany (mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PhotoEntity> photos;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "businessPerson_id", nullable = false, updatable = false, insertable = false)
     private BusinessPersonEntity businessPerson;
+
+    @Column(name="businessPerson_id")
+    private Long businessPersonId;
 }

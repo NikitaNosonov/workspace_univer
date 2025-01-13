@@ -1,9 +1,7 @@
 package dev.vorstu.dto.mapper;
 
 import dev.vorstu.dto.BusinessPerson;
-import dev.vorstu.dto.Location;
 import dev.vorstu.entity.BusinessPersonEntity;
-import dev.vorstu.entity.LocationEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-13T06:12:38+0300",
+    date = "2025-01-13T15:21:36+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -40,7 +38,7 @@ public class BusinessPersonMapperImpl implements BusinessPersonMapper {
         businessPersonEntity.setApplicationId( dto.getApplicationId() );
         businessPersonEntity.setApprovedApplication( dto.isApprovedApplication() );
         businessPersonEntity.setUserId( dto.getUserId() );
-        businessPersonEntity.setLocations( locationListToLocationEntityList( dto.getLocations() ) );
+        businessPersonEntity.setLocations( locationMapper.toListEntity( dto.getLocations() ) );
 
         return businessPersonEntity;
     }
@@ -87,19 +85,6 @@ public class BusinessPersonMapperImpl implements BusinessPersonMapper {
         List<BusinessPersonEntity> list1 = new ArrayList<BusinessPersonEntity>( list.size() );
         for ( BusinessPerson businessPerson : list ) {
             list1.add( dtoToEntity( businessPerson ) );
-        }
-
-        return list1;
-    }
-
-    protected List<LocationEntity> locationListToLocationEntityList(List<Location> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<LocationEntity> list1 = new ArrayList<LocationEntity>( list.size() );
-        for ( Location location : list ) {
-            list1.add( locationMapper.dtoToEntity( location ) );
         }
 
         return list1;
