@@ -19,8 +19,10 @@ public class PhotoEntity {
     private Integer photoPriority;
     private String photo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "location_id", nullable = false, updatable = false, insertable = false)
     private LocationEntity location;
 
+    @Column(name = "location_id")
+    private Long locationId;
 }

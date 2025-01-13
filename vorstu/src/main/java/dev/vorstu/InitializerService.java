@@ -30,16 +30,31 @@ public class InitializerService {
                 .password("1111")
                 .role(Role.USER)
                 .build());
+
         Credential credential1 = credentialService.create(Credential.builder()
                 .username("admin")
                 .password("1111")
                 .role(Role.ADMIN)
                 .build());
+
+        Credential credential2 = credentialService.create(Credential.builder()
+                .username("user1")
+                .password("1111")
+                .role(Role.USER)
+                .build());
+
         User userId = userService.create(User.builder()
                 .fio("Иванов Иван Иванович")
                 .email("i1@mail.ru")
                 .phoneNumber("11122233377")
                 .credentialId(credential.getId())
+                .build());
+
+        User userId1 = userService.create(User.builder()
+                .fio("Алексеев Алекей Алексеевич")
+                .email("i1@mail.ru")
+                .phoneNumber("11122233377")
+                .credentialId(credential2.getId())
                 .build());
     }
 }

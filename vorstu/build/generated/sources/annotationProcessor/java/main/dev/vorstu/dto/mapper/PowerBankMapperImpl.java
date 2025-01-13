@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T21:32:54+0300",
+    date = "2025-01-13T03:42:52+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -38,6 +38,8 @@ public class PowerBankMapperImpl implements PowerBankMapper {
         powerBankEntity.setCharge( dto.getCharge() );
         powerBankEntity.setStatusPowerBank( dto.isStatusPowerBank() );
         powerBankEntity.setRentals( rentalMapper.toListEntity( dto.getRentals() ) );
+        powerBankEntity.setOwnerLocationId( dto.getOwnerLocationId() );
+        powerBankEntity.setLocationPowerBankId( dto.getLocationPowerBankId() );
 
         return powerBankEntity;
     }
@@ -55,6 +57,8 @@ public class PowerBankMapperImpl implements PowerBankMapper {
         powerBank.capacity( entity.getCapacity() );
         powerBank.charge( entity.getCharge() );
         powerBank.statusPowerBank( entity.isStatusPowerBank() );
+        powerBank.ownerLocationId( entity.getOwnerLocationId() );
+        powerBank.locationPowerBankId( entity.getLocationPowerBankId() );
         powerBank.rentals( rentalMapper.toList( entity.getRentals() ) );
 
         return powerBank.build();

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T21:32:54+0300",
+    date = "2025-01-13T03:42:51+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -40,6 +40,7 @@ public class UserMapperImpl implements UserMapper {
         userEntity.setPhoneNumber( dto.getPhoneNumber() );
         userEntity.setBusinessPerson( businessPersonMapper.dtoToEntity( dto.getBusinessPerson() ) );
         userEntity.setRentals( rentalMapper.toListEntity( dto.getRentals() ) );
+        userEntity.setCredentialId( dto.getCredentialId() );
 
         return userEntity;
     }
@@ -58,6 +59,7 @@ public class UserMapperImpl implements UserMapper {
         user.phoneNumber( entity.getPhoneNumber() );
         user.rentals( rentalMapper.toList( entity.getRentals() ) );
         user.businessPerson( businessPersonMapper.entityToDto( entity.getBusinessPerson() ) );
+        user.credentialId( entity.getCredentialId() );
 
         return user.build();
     }

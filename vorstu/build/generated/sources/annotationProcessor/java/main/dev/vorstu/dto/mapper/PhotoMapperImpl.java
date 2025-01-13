@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T21:32:54+0300",
+    date = "2025-01-13T03:42:52+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -26,6 +26,7 @@ public class PhotoMapperImpl implements PhotoMapper {
         photoEntity.setId( dto.getId() );
         photoEntity.setPhotoPriority( dto.getPhotoPriority() );
         photoEntity.setPhoto( dto.getPhoto() );
+        photoEntity.setLocationId( dto.getLocationId() );
 
         return photoEntity;
     }
@@ -41,6 +42,7 @@ public class PhotoMapperImpl implements PhotoMapper {
         photo.id( entity.getId() );
         photo.photoPriority( entity.getPhotoPriority() );
         photo.photo( entity.getPhoto() );
+        photo.locationId( entity.getLocationId() );
 
         return photo.build();
     }

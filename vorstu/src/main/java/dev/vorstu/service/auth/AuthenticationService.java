@@ -2,6 +2,8 @@ package dev.vorstu.service.auth;
 
 import dev.vorstu.dto.auth.JwtResponse;
 import dev.vorstu.dto.auth.SignInRequest;
+import dev.vorstu.entity.UserEntity;
+import dev.vorstu.entity.credential.CredentialEntity;
 import dev.vorstu.service.CredentialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,11 +25,23 @@ public class AuthenticationService {
                 request.getPassword()
         ));
 
-        var user = credentialService
+        CredentialEntity credential = (CredentialEntity) credentialService
                 .userDetailsService()
                 .loadUserByUsername(request.getUsername());
 
-        var jwt = jwtService.generateToken(user);
-        return new JwtResponse(jwt);
+        if (credential == null) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+
+        UserEntity userEntity = credential.getUserEntity();
+        if (userEntity == null) {
+            throw new IllegalArgumentException("User entity not found for the given credentials.");
+        }
+
+        Long userId = userEntity.getId();
+        var jwt = jwtService.generateToken(credential);
+
+        return new JwtResponse(jwt, userId);
     }
+
 }

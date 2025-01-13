@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T21:32:54+0300",
+    date = "2025-01-13T03:42:52+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -26,6 +26,8 @@ public class RentalMapperImpl implements RentalMapper {
         rentalEntity.setId( dto.getId() );
         rentalEntity.setStartTime( dto.getStartTime() );
         rentalEntity.setEndTime( dto.getEndTime() );
+        rentalEntity.setPowerBankId( dto.getPowerBankId() );
+        rentalEntity.setUserId( dto.getUserId() );
 
         return rentalEntity;
     }
@@ -39,6 +41,8 @@ public class RentalMapperImpl implements RentalMapper {
         Rental.RentalBuilder rental = Rental.builder();
 
         rental.id( entity.getId() );
+        rental.powerBankId( entity.getPowerBankId() );
+        rental.userId( entity.getUserId() );
         rental.startTime( entity.getStartTime() );
         rental.endTime( entity.getEndTime() );
 

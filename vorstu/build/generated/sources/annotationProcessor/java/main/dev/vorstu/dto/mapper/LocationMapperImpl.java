@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-12T21:32:54+0300",
+    date = "2025-01-13T03:42:51+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -92,6 +92,8 @@ public class LocationMapperImpl implements LocationMapper {
         rentalEntity.setId( rental.getId() );
         rentalEntity.setStartTime( rental.getStartTime() );
         rentalEntity.setEndTime( rental.getEndTime() );
+        rentalEntity.setPowerBankId( rental.getPowerBankId() );
+        rentalEntity.setUserId( rental.getUserId() );
 
         return rentalEntity;
     }
@@ -122,6 +124,8 @@ public class LocationMapperImpl implements LocationMapper {
         powerBankEntity.setCharge( powerBank.getCharge() );
         powerBankEntity.setStatusPowerBank( powerBank.isStatusPowerBank() );
         powerBankEntity.setRentals( rentalListToRentalEntityList( powerBank.getRentals() ) );
+        powerBankEntity.setOwnerLocationId( powerBank.getOwnerLocationId() );
+        powerBankEntity.setLocationPowerBankId( powerBank.getLocationPowerBankId() );
 
         return powerBankEntity;
     }
@@ -147,6 +151,8 @@ public class LocationMapperImpl implements LocationMapper {
         Rental.RentalBuilder rental = Rental.builder();
 
         rental.id( rentalEntity.getId() );
+        rental.powerBankId( rentalEntity.getPowerBankId() );
+        rental.userId( rentalEntity.getUserId() );
         rental.startTime( rentalEntity.getStartTime() );
         rental.endTime( rentalEntity.getEndTime() );
 
@@ -178,6 +184,8 @@ public class LocationMapperImpl implements LocationMapper {
         powerBank.capacity( powerBankEntity.getCapacity() );
         powerBank.charge( powerBankEntity.getCharge() );
         powerBank.statusPowerBank( powerBankEntity.isStatusPowerBank() );
+        powerBank.ownerLocationId( powerBankEntity.getOwnerLocationId() );
+        powerBank.locationPowerBankId( powerBankEntity.getLocationPowerBankId() );
         powerBank.rentals( rentalEntityListToRentalList( powerBankEntity.getRentals() ) );
 
         return powerBank.build();

@@ -19,7 +19,10 @@ public class AdminEntity {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "credential_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "credential_id", nullable = false, updatable = false, insertable = false)
     private CredentialEntity credential;
+
+    @Column(name="credential_id")
+    private Long credentialId;
 }

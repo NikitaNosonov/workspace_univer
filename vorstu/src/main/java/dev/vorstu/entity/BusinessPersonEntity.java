@@ -23,10 +23,14 @@ public class BusinessPersonEntity {
     private Long applicationId;
     private boolean approvedApplication;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = false)
     private UserEntity user;
 
-    @OneToMany(mappedBy = "businessPerson", fetch = FetchType.LAZY)
+    @Column(name = "user_id")
+    private Long userId;
+
+    @OneToMany(mappedBy = "businessPerson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<LocationEntity> locations;
 
 

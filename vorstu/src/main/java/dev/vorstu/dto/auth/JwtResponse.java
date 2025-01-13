@@ -11,4 +11,5 @@
     @NoArgsConstructor
     public class JwtResponse {
         private String token;
+        private Long userId;
     }

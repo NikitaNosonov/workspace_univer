@@ -23,16 +23,16 @@ public class LocationEntity {
     private double latitude;
     private double longitude;
 
-    @OneToMany (mappedBy = "ownerLocation", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "ownerLocation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PowerBankEntity> ownerPowerBanks;
 
-    @OneToMany (mappedBy = "locationPowerBank", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "locationPowerBank", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PowerBankEntity> powerBanks;
 
-    @OneToMany (mappedBy = "location", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PhotoEntity> photos;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "businessPerson_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "businessPerson_id", nullable = false, updatable = false, insertable = false)
     private BusinessPersonEntity businessPerson;
 }

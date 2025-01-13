@@ -21,12 +21,17 @@ public class RentalEntity {
     private Date startTime;
     private Date endTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "powerBank_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "powerBank_id", nullable = false, updatable = false, insertable = false)
     private PowerBankEntity powerBank;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @Column(name = "powerBank_id")
+    private Long powerBankId;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false, updatable = false, insertable = false)
     private UserEntity user;
 
+    @Column(name = "user_id")
+    private Long userId;
 }
