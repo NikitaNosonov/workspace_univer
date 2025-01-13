@@ -1,13 +1,17 @@
+
 package dev.vorstu.service;
 
 import dev.vorstu.dto.User;
+import dev.vorstu.dto.credential.Credential;
 import dev.vorstu.dto.mapper.UserMapper;
+import dev.vorstu.entity.UserEntity;
 import dev.vorstu.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -38,5 +42,14 @@ public class UserService {
         return userMapper.toList(
                 userRepository.findAll()
         );
+    }
+
+    public Optional<User> findById(Long id) {
+        UserEntity userEntity = userRepository.findById(id).orElse(null);
+        if (userEntity != null) {
+            return Optional.of(userMapper.entityToDto(userEntity));
+        } else {
+            return Optional.empty();
+        }
     }
 }

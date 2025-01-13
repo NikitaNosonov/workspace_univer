@@ -1,3 +1,4 @@
+
 package dev.vorstu.entity;
 
 import dev.vorstu.entity.credential.CredentialEntity;

@@ -5,11 +5,15 @@ import dev.vorstu.entity.UserEntity;
 import dev.vorstu.repositories.UserRepository;
 import dev.vorstu.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/user")
@@ -18,33 +22,17 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
     private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public User createUser(@RequestBody User newUser) {
-        return userService.create(newUser);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<User> getUser() {
+        return userService.getUsers();
     }
-
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public User changeUser(@RequestBody User changingUser) {
-        return userService.update(changingUser);
-    }
-
-    @DeleteMapping(value="/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Long deleteUser(@PathVariable("id") Long id) {
-        return userService.delete(id);
-    }
-
-    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<UserEntity> getAllUsers() {
-        System.out.println("Получение всех пользователей");
-        return userRepository.findAll();
-    }
-
-    @GetMapping("/user/{id}")
-    public UserEntity getUserById(@PathVariable Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Пользователь не найден с ID: " + id));
+    @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
+        Optional<User> userDto =userService.findById(id);
+        return userDto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

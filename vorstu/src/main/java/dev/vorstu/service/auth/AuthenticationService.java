@@ -29,14 +29,7 @@ public class AuthenticationService {
                 .userDetailsService()
                 .loadUserByUsername(request.getUsername());
 
-        if (credential == null) {
-            throw new IllegalArgumentException("Invalid username or password");
-        }
-
         UserEntity userEntity = credential.getUserEntity();
-        if (userEntity == null) {
-            throw new IllegalArgumentException("User entity not found for the given credentials.");
-        }
 
         Long userId = userEntity.getId();
         var jwt = jwtService.generateToken(credential);
