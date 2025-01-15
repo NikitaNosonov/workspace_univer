@@ -9,5 +9,4 @@ import java.util.Optional;
 
 public interface BusinessPersonRepository extends JpaRepository<BusinessPersonEntity, Long> {
     List<BusinessPersonEntity> findAll();
-    Optional<BusinessPersonEntity> findByUserId(Long userId);
 }

@@ -7,7 +7,9 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(componentModel = "spring",
+        uses = {UserMapper.class,
+                PowerBankMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface RentalMapper {
     RentalEntity dtoToEntity(Rental dto);
 

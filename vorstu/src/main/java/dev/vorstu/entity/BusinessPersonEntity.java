@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name="businessPerson")
+@Table(name="businessPersons")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,9 +30,6 @@ public class BusinessPersonEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name="owner_id")
+    @OneToMany(mappedBy = "businessPerson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<LocationEntity> locations;
-
-
 }

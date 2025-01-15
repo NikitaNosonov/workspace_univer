@@ -11,7 +11,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring",
         uses = {RentalMapper.class,
-                BusinessPersonMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+                BusinessPersonMapper.class,
+                CredentialMapper.class}, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UserMapper {
     UserEntity dtoToEntity(User dto);
 

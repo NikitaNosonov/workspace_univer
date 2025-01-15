@@ -16,10 +16,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/businessPerson")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class BusinessPersonController {
-
     @Autowired
     private BusinessPersonRepository businessPersonRepository;
     private final BusinessPersonService businessPersonService;
@@ -29,8 +28,7 @@ public class BusinessPersonController {
         return businessPersonService.create(newBusinessPerson);
     }
 
-
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
     public List<BusinessPerson> getBusinessPerson() {
         return businessPersonService.getBusinessPersons();
     }

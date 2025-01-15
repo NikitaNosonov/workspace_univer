@@ -1,8 +1,6 @@
 package dev.vorstu;
 
-import dev.vorstu.dto.BusinessPerson;
-import dev.vorstu.dto.Location;
-import dev.vorstu.dto.User;
+import dev.vorstu.dto.*;
 import dev.vorstu.dto.credential.Credential;
 import dev.vorstu.dto.credential.Role;
 import dev.vorstu.service.*;
@@ -10,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 
 @Service
 @RequiredArgsConstructor
@@ -55,18 +55,22 @@ public class InitializerService {
                 .role(Role.USER)
                 .build());
 
+        User adminId = userService.create(User.builder()
+                .fio("Админ Админович")
+                .credentialId(credential1.getId())
+                .build());
+
         User userId = userService.create(User.builder()
                 .fio("Иванов Иван Иванович")
                 .email("i1@mail.ru")
                 .phoneNumber("11122233377")
                 .credentialId(credential.getId())
-
                 .build());
 
         User userId1 = userService.create(User.builder()
                 .fio("Алексеев Алекей Алексеевич")
-                .email("i1@mail.ru")
-                .phoneNumber("11122233377")
+                .email("a1@mail.ru")
+                .phoneNumber("84732744447")
                 .credentialId(credential2.getId())
                 .build());
 
@@ -74,7 +78,7 @@ public class InitializerService {
                 .nameBusiness("ИП ААА")
                 .applicationId(Long.valueOf(21213))
                 .userId(userId.getId())
-                .approvedApplication(false)
+                .approvedApplication(true)
                 .build());
 
         Location locationId = locationService.create(Location.builder()
@@ -89,8 +93,45 @@ public class InitializerService {
                 .nameLocation("Отель")
                 .description("Отель Алексеева")
                 .businessPersonId(businessPersonId1.getId())
-                .latitude(51.662756)
-                .longitude(39.198858)
+                .latitude(51.661563)
+                .longitude(39.132985)
+                .build());
+
+        PowerBank powerBankId1 = powerBankService.create(PowerBank.builder()
+                .type("Мощный")
+                .capacity(10000)
+                .charge(100)
+                .statusPowerBank(true)
+                .ownerLocationId(locationId.getId())
+                .locationPowerBankId(locationId.getId())
+                .build());
+
+        PowerBank powerBankId2 = powerBankService.create(PowerBank.builder()
+                .type("Маломощный")
+                .capacity(7000)
+                .charge(100)
+                .statusPowerBank(true)
+                .ownerLocationId(locationId.getId())
+                .locationPowerBankId(locationId.getId())
+                .build());
+
+        Photo photoId1 = photoService.create(Photo.builder()
+                .photoPriority(1)
+                .photo("Локация 1")
+                .locationId(locationId.getId())
+                .build());
+
+        Rental rentalId1 = rentalService.create(Rental.builder()
+                .startTime(Timestamp.valueOf("2025-01-14 12:00:00"))
+                .endTime(Timestamp.valueOf("2025-01-14 18:00:00"))
+                .userId(userId.getId())
+                .powerBankId(powerBankId1.getId())
+                .build());
+
+        Rental rentalId2 = rentalService.create(Rental.builder()
+                .startTime(Timestamp.valueOf("2025-01-14 07:00:00"))
+                .endTime(Timestamp.valueOf("2025-01-14 09:00:00"))
+                .userId(userId1.getId())
                 .build());
     }
 }

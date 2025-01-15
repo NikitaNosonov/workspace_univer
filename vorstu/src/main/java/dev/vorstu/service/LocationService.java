@@ -3,6 +3,8 @@ package dev.vorstu.service;
 import dev.vorstu.dto.BusinessPerson;
 import dev.vorstu.dto.Location;
 import dev.vorstu.dto.mapper.LocationMapper;
+import dev.vorstu.entity.BusinessPersonEntity;
+import dev.vorstu.entity.LocationEntity;
 import dev.vorstu.entity.credential.CredentialEntity;
 import dev.vorstu.repositories.LocationRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Component
@@ -27,7 +30,8 @@ public class LocationService {
         if (authentication != null) {
             String currentUserName = authentication.getName();
             CredentialEntity currentUser = credentialService.getByUsername(currentUserName);
-            location.setBusinessPersonId(currentUser.getUserEntity().getBusinessPerson().getId());
+            BusinessPersonEntity businessPersonEntity = currentUser.getUserEntity().getBusinessPerson();
+            location.setBusinessPersonId(businessPersonEntity.getId());
         }
         return locationMapper.entityToDto(
                 locationRepository.save(locationMapper.dtoToEntity(location))
@@ -51,9 +55,13 @@ public class LocationService {
         return id;
     }
 
-    public List<Location> findLocations() {
-        return locationMapper.toList(
-                locationRepository.findAll());
+    public Optional<Location> findById(Long id) {
+        LocationEntity locationEntity = locationRepository.findById(id).orElse(null);
+        if (locationEntity != null) {
+            return Optional.of(locationMapper.entityToDto(locationEntity));
+        } else {
+            return Optional.empty();
+        }
     }
 
     public List<Location> findForCurrentUser() {

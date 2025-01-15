@@ -31,8 +31,8 @@ public class UserController {
     }
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getUserById(@PathVariable("id") Long id){
-        Optional<User> userDto =userService.findById(id);
-        return userDto.map(ResponseEntity::ok)
+        Optional<User> user =userService.findById(id);
+        return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

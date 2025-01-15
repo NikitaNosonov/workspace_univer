@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/vorstu.main.iml" filepath="$PROJECT_DIR$/.idea/modules/vorstu.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vorstu.test.iml" filepath="$PROJECT_DIR$/.idea/modules/vorstu.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/workspace_univer.iml" filepath="$PROJECT_DIR$/.idea/workspace_univer.iml" />
     </modules>
   </component>

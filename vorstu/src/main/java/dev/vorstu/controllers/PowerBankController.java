@@ -36,12 +36,12 @@ public class PowerBankController {
 //        return powerBankService.delete(id);
 //    }
 
-    @GetMapping(value = "powerBanks", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PowerBankEntity> getAllPowerBanks() {
         return powerBankRepository.findAll();
     }
 
-    @GetMapping("/powerBank/{id}")
+    @GetMapping(value = "/powerBank/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public PowerBankEntity getPowerBankById(@PathVariable Long id) {
         return powerBankRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Повербанк не найден с ID: " + id));

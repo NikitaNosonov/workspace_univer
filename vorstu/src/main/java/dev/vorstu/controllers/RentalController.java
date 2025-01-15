@@ -26,22 +26,22 @@ public class RentalController {
         return rentalService.create(newRental);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Rental changeRental(@RequestBody Rental changingRental) {
-        return rentalService.update(changingRental);
-    }
+//    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Rental changeRental(@RequestBody Rental changingRental) {
+//        return rentalService.update(changingRental);
+//    }
+//
+//    @DeleteMapping(value="rentals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Long deleteRental(@PathVariable("id") Long id) {
+//        return rentalService.delete(id);
+//    }
 
-    @DeleteMapping(value="rentals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Long deleteRental(@PathVariable("id") Long id) {
-        return rentalService.delete(id);
-    }
-
-    @GetMapping(value = "rentals", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RentalEntity> getAllRentals() {
         return rentalRepository.findAll();
     }
 
-    @GetMapping("/rental/{id}")
+    @GetMapping(value = "/rental/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public RentalEntity getRentalById(@PathVariable Long id) {
         return rentalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Аредна не найдена с ID: " + id));

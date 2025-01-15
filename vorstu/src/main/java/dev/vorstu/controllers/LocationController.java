@@ -28,9 +28,15 @@ public class LocationController {
     public Location createLocation(@RequestBody Location newLocation) {
         return locationService.create(newLocation);
     }
-
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Location> getBusinessPerson() {
+    @GetMapping
+    public List<Location> getLocation() {
         return locationService.getLocations();
+    }
+
+    @GetMapping(value = "/location/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Location> getLocationById(@PathVariable("id") Long id){
+        Optional<Location> locationDto =locationService.findById(id);
+        return locationDto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
