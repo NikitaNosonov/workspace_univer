@@ -26,19 +26,19 @@ public class RentalController {
         return rentalService.create(newRental);
     }
 
-//    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Rental changeRental(@RequestBody Rental changingRental) {
-//        return rentalService.update(changingRental);
-//    }
-//
-//    @DeleteMapping(value="rentals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Long deleteRental(@PathVariable("id") Long id) {
-//        return rentalService.delete(id);
-//    }
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Rental changeRental(@RequestBody Rental changingRental) {
+        return rentalService.update(changingRental);
+    }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<RentalEntity> getAllRentals() {
-        return rentalRepository.findAll();
+    @DeleteMapping(value="rentals/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long deleteRental(@PathVariable("id") Long id) {
+        return rentalService.delete(id);
+    }
+
+    @GetMapping
+    public List<Rental> getRental() {
+        return rentalService.getRentals();
     }
 
     @GetMapping(value = "/rental/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

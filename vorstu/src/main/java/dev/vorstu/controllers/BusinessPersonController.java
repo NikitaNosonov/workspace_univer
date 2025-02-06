@@ -39,4 +39,14 @@ public class BusinessPersonController {
         return businessPersonDto.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public BusinessPerson changeBusinessPerson(@RequestBody BusinessPerson changingBusinessPerson) {
+        return businessPersonService.update(changingBusinessPerson);
+    }
+
+    @DeleteMapping(value="/businessPerson/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long deleteBusinessPerson(@PathVariable("id") Long id) {
+        return businessPersonService.delete(id);
+    }
 }

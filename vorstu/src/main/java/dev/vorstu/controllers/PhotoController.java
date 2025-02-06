@@ -26,9 +26,9 @@ public class PhotoController {
         return photoService.create(newPhoto);
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PhotoEntity> getAllPhotos() {
-        return photoRepository.findAll();
+    @GetMapping
+    public List<Photo> getPhoto() {
+        return photoService.getPhotos();
     }
 
     @GetMapping(value = "/photo/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

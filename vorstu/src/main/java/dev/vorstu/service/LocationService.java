@@ -64,14 +64,14 @@ public class LocationService {
         }
     }
 
-    public List<Location> findForCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
-            String currentUserName = authentication.getName();
-            CredentialEntity currentUser = credentialService.getByUsername(currentUserName);
-            Long businessPersonId = currentUser.getUserEntity().getBusinessPerson().getId();
-            return locationMapper.toList(locationRepository.findByBusinessPersonId(businessPersonId));
-        }
-        return Collections.emptyList();
-    }
+//    public List<Location> findForCurrentUser() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication != null) {
+//            String currentUserName = authentication.getName();
+//            CredentialEntity currentUser = credentialService.getByUsername(currentUserName);
+//            Long businessPersonId = currentUser.getUserEntity().getBusinessPerson().getId();
+//            return locationMapper.toList(locationRepository.findByBusinessPersonId(businessPersonId));
+//        }
+//        return Collections.emptyList();
+//    }
 }

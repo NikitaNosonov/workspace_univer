@@ -1,8 +1,6 @@
 package dev.vorstu.controllers;
 
 import dev.vorstu.dto.User;
-import dev.vorstu.entity.UserEntity;
-import dev.vorstu.repositories.UserRepository;
 import dev.vorstu.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -34,5 +32,15 @@ public class UserController {
         Optional<User> user =userService.findById(id);
         return user.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public User changeUser(@RequestBody User changingUser) {
+        return userService.update(changingUser);
+    }
+
+    @DeleteMapping(value="/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long deleteUser(@PathVariable("id") Long id) {
+        return userService.delete(id);
     }
 }

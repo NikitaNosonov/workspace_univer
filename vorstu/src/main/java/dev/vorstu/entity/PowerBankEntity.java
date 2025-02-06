@@ -23,7 +23,7 @@ public class PowerBankEntity {
     private Integer charge;
     private boolean statusPowerBank;
 
-    @OneToMany(mappedBy = "powerBank", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "powerBank", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RentalEntity> rentals;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

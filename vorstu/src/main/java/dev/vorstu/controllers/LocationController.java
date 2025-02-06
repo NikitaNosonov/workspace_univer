@@ -2,6 +2,7 @@ package dev.vorstu.controllers;
 
 import dev.vorstu.dto.BusinessPerson;
 import dev.vorstu.dto.Location;
+import dev.vorstu.dto.User;
 import dev.vorstu.entity.LocationEntity;
 import dev.vorstu.repositories.LocationRepository;
 import dev.vorstu.service.LocationService;
@@ -38,5 +39,15 @@ public class LocationController {
         Optional<Location> locationDto =locationService.findById(id);
         return locationDto.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Location changeLocation(@RequestBody Location changingLocation) {
+        return locationService.update(changingLocation);
+    }
+
+    @DeleteMapping(value="/location/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long deleteLocation(@PathVariable("id") Long id) {
+        return locationService.delete(id);
     }
 }
