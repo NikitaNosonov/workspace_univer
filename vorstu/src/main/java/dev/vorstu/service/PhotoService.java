@@ -31,13 +31,6 @@ public class PhotoService {
             BusinessPersonEntity businessPersonEntity = currentUser.getUserEntity().getBusinessPerson();
 
             List<LocationEntity> locations = businessPersonEntity.getLocations();
-
-            if (!locations.isEmpty()) {
-                LocationEntity location = locations.get(0);
-                photo.setLocationId(location.getId());
-            } else {
-                throw new IllegalArgumentException("No available locations for the current business person.");
-            }
         }
 
         return photoMapper.entityToDto(

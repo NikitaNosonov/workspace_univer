@@ -17,7 +17,7 @@ public class PhotoEntity {
     private Long id;
 
     private Integer photoPriority;
-    private String photo;
+    private byte[] photo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "location_id", nullable = false, updatable = false, insertable = false)

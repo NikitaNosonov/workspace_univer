@@ -3,13 +3,14 @@ package dev.vorstu.dto.mapper;
 import dev.vorstu.dto.Photo;
 import dev.vorstu.entity.PhotoEntity;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-17T02:54:50+0300",
+    date = "2025-02-11T23:49:05+0300",
     comments = "version: 1.6.2, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.10.2.jar, environment: Java 17.0.13 (Amazon.com Inc.)"
 )
 @Component
@@ -25,7 +26,10 @@ public class PhotoMapperImpl implements PhotoMapper {
 
         photoEntity.setId( dto.getId() );
         photoEntity.setPhotoPriority( dto.getPhotoPriority() );
-        photoEntity.setPhoto( dto.getPhoto() );
+        byte[] photo = dto.getPhoto();
+        if ( photo != null ) {
+            photoEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
+        }
         photoEntity.setLocationId( dto.getLocationId() );
 
         return photoEntity;
@@ -37,14 +41,17 @@ public class PhotoMapperImpl implements PhotoMapper {
             return null;
         }
 
-        Photo.PhotoBuilder photo = Photo.builder();
+        Photo.PhotoBuilder photo1 = Photo.builder();
 
-        photo.id( entity.getId() );
-        photo.photoPriority( entity.getPhotoPriority() );
-        photo.photo( entity.getPhoto() );
-        photo.locationId( entity.getLocationId() );
+        photo1.id( entity.getId() );
+        photo1.photoPriority( entity.getPhotoPriority() );
+        byte[] photo = entity.getPhoto();
+        if ( photo != null ) {
+            photo1.photo( Arrays.copyOf( photo, photo.length ) );
+        }
+        photo1.locationId( entity.getLocationId() );
 
-        return photo.build();
+        return photo1.build();
     }
 
     @Override

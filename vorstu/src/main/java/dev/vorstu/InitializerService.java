@@ -115,11 +115,7 @@ public class InitializerService {
                 .locationPowerBankId(locationId.getId())
                 .build());
 
-        Photo photoId1 = photoService.create(Photo.builder()
-                .photoPriority(1)
-                .photo("Локация 1")
-                .locationId(locationId.getId())
-                .build());
+
 
         Rental rentalId1 = rentalService.create(Rental.builder()
                 .startTime(Timestamp.valueOf("2025-01-14 12:00:00"))

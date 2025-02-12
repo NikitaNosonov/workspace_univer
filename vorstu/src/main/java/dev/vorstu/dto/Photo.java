@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class Photo {
     private Long id;
     private Integer photoPriority;
-    private String photo;
+    private byte[] photo;
     private Long locationId;
 }
